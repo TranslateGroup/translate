@@ -16,6 +16,7 @@ import org.apache.commons.httpclient.StatusLine;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 
 public class HttpUtil {
 
@@ -123,6 +124,8 @@ public class HttpUtil {
 
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod(url);
+		post.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "UTF-8");
+		post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		post.setRequestBody(nameValuePair_arr);
 
 		client.getHostConfiguration().setHost(host, port, "http");
